@@ -8,6 +8,7 @@ $hobbies = "";
 $F_NAME = $_POST["first_name"];
 $L_NAME = $_POST["last_name"];
 $Message =$_POST["message"];
+$output ="";
 if(isset($_POST["submit"]))
 {
     $file =$_FILES['file'];
@@ -49,9 +50,9 @@ $new = array_filter($arr, function ($var) {
 
 echo "<h2>User Information:</h2>";
 echo "<strong>Name:</strong>" . $L_NAME[0] .".". $F_NAME;
-echo "<br>";
+echo "<br><br>";
 echo "<strong>Message:</strong> "."<br>" . nl2br($Message);
-echo "<br>";
+echo "<br><br>";
 echo "<strong>Hobbies:</strong> ";
 if(isset($_POST["submit"])){
     if(isset($_POST["hobbies"])){
@@ -60,8 +61,16 @@ if(isset($_POST["submit"])){
         }
 
 }
-echo "<pre>";
-print_r($new);
+echo "<br><br>";
+echo "<strong><h4>Movie List With Genre Fantasy Friciton</h4> </strong>";
+foreach ($new as $val){
+    $output.="<strong>Title :</strong> ". $val['Title']."<br>";
+    $output.="<strong>Author :</strong> ". $val['Author']."<br>";
+    $output.="<strong>Genre :</strong> ". $val['Genre']."<br>";
+    $output.="<strong>Published Year :</strong> " . $val['Published Year']."<br>";
+    $output.="<br>";
+}
+echo $output;
 echo "<br>";
 ?>
 </body>
